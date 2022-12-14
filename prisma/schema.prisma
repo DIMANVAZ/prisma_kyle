@@ -13,11 +13,11 @@ datasource db {
 model User {
   id             String          @id @default(uuid()) // автогенерация
   name           String
-  email          String
+  email          String          @unique
   isAdmin        Boolean
-  writtenPosts   Post[]          @relation("WrittenPosts")
-  favouritePosts Post[]          @relation("FavouritePosts")
-  UserPreference UserPreference?
+  writtenPosts   Post[]          @relation("WrittenPosts") // отношение o2m из одной модели сразу к нескольким
+  favouritePosts Post[]          @relation("FavouritePosts") // отношение o2m из одной модели сразу к нескольким
+  userPreference UserPreference?
 }
 
 model UserPreference {
